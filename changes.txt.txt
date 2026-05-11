@@ -1,0 +1,106 @@
+# Changes Made in Bank Account Program
+
+1. Added Search Account Feature
+
+* Added function prototype:
+
+```c
+void searchRecord(FILE *fPtr);
+```
+
+* Added new menu option:
+
+Old:
+
+```c
+5 - end program
+```
+
+New:
+
+```c
+5 - search account
+6 - end program
+```
+
+* Modified while loop:
+
+Old:
+
+```c
+while ((choice = enterChoice()) != 5)
+```
+
+New:
+
+```c
+while ((choice = enterChoice()) != 6)
+```
+
+* Added new case in switch statement:
+
+```c
+case 5:
+    searchRecord(cfPtr);
+    break;
+```
+
+* Added searchRecord() function to search and display account details.
+
+---
+
+2. Added Negative Balance Protection
+
+Old code:
+
+```c
+client.balance += transaction;
+```
+
+New code:
+
+```c
+if (client.balance + transaction < 0)
+{
+    printf("Insufficient balance.\n");
+}
+else
+{
+    client.balance += transaction;
+}
+```
+
+This prevents withdrawal when balance becomes negative.
+
+---
+
+3. Improved File Reading Loop
+
+Old code:
+
+```c
+while (!feof(readPtr))
+```
+
+New code:
+
+```c
+while (fread(&client,
+             sizeof(struct clientData),
+             1,
+             readPtr) == 1)
+```
+
+This improves proper file reading.
+
+---
+
+Final Developed Features
+
+* Add new account
+* Update account
+* Delete account
+* Search account
+* Prevent negative balance
+* Generate accounts.txt
+* Random-access file handling in C
